@@ -51,8 +51,4 @@ func main()  {
 
 	main2()
 	main3()
-
-
-	var name string = "farhan"
-	name2 :="farhan"
 }
