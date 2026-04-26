@@ -14,8 +14,10 @@ func investAmountCalculator() {
 
 	const inflationRate = 2.5
 	investAmount, expectedReturnRate, years := 1000.0, 5.5, 10.0
+
 	futureValue := investAmount * math.Pow(1+expectedReturnRate/100, years)
 	realValue := futureValue / math.Pow(1+inflationRate/100, years)
+
 	fmt.Println(futureValue)
 	fmt.Println(realValue)
 }
