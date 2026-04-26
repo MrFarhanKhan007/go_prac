@@ -56,4 +56,3 @@ func main()  {
 	var name string = "farhan"
 	name2 :="farhan"
 }
-
