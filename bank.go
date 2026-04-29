@@ -1,6 +1,12 @@
 package main
 
 import "fmt"
+import "os"
+
+func writeToFile(balance float64) {
+	balanceText := fmt.Sprint(balance)
+	os.WriteFile("balance.txt", []byte(balanceText), 0644)
+}
 
 func bankApplication() {
 	accountBalance := 1000.0
@@ -47,6 +53,7 @@ func depositMoney(accountBalance float64) {
 	fmt.Scan(&moneyToBeDeposited)
 	accountBalance += moneyToBeDeposited
 	fmt.Printf("Balance Updated! - New Account Balance is: %.2f", accountBalance)
+	writeToFile(accountBalance)
 }
 
 func withdrawMoney(accountBalance float64) {
@@ -72,5 +79,6 @@ func withdrawMoneyWithRetries(accountBalance float64, retries int) {
 	} else {
 		accountBalance -= moneyToWithdraw
 		fmt.Printf("Balance Updated! - New Account Balance is: %.2f", accountBalance)
+		writeToFile(accountBalance)
 	}
 }
