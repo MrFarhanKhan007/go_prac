@@ -4,6 +4,7 @@ import "fmt"
 
 func bankApplication() {
 	accountBalance := 1000.0
+
 	mainMenu()
 	choice := getChoice()
 
@@ -12,9 +13,11 @@ func bankApplication() {
 	} else if choice == 2 {
 		depositMoney(accountBalance)
 	} else if choice == 3 {
-		// TODO()
+		withdrawMoney(accountBalance)
+	} else if choice == 4 {
+		fmt.Println("Thank you for using our application!")
 	} else {
-		return
+		fmt.Println("Not a Correct choice!, Kindly choose a valid option.")
 	}
 }
 
@@ -30,7 +33,7 @@ func mainMenu() {
 
 func getChoice() int {
 	var choice int
-	fmt.Println("Your Choice: ")
+	fmt.Print("Your Choice: ")
 	fmt.Scan(&choice)
 	return choice
 }
@@ -40,6 +43,34 @@ func checkBalance(accountBalance float64) {
 }
 func depositMoney(accountBalance float64) {
 	var moneyToBeDeposited float64
+	fmt.Print("Enter the money to be deposited: ")
 	fmt.Scan(&moneyToBeDeposited)
 	accountBalance += moneyToBeDeposited
+	fmt.Printf("Balance Updated! - New Account Balance is: %.2f", accountBalance)
+}
+
+func withdrawMoney(accountBalance float64) {
+	withdrawMoneyWithRetries(accountBalance, 3)
+}
+
+func withdrawMoneyWithRetries(accountBalance float64, retries int) {
+	if retries == 0 {
+		fmt.Println("Too many failed attempts. Please try again later! ")
+		return
+	}
+
+	var moneyToWithdraw float64
+	fmt.Print("Enter the money to be withdrawn: ")
+	fmt.Scan(&moneyToWithdraw)
+
+	if moneyToWithdraw <= 0 {
+		fmt.Println("Please enter an amount that's greater than 0!")
+		withdrawMoneyWithRetries(accountBalance, retries-1)
+	} else if moneyToWithdraw > accountBalance {
+		fmt.Println("Insufficient funds! - Withdrawn money cannot be greater than account balance. Please try again!")
+		withdrawMoneyWithRetries(accountBalance, retries-1)
+	} else {
+		accountBalance -= moneyToWithdraw
+		fmt.Printf("Balance Updated! - New Account Balance is: %.2f", accountBalance)
+	}
 }
