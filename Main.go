@@ -4,5 +4,7 @@ func main(){
 	// fmt.Println("First Program")
 	// investAmountCalculator()
 	// investAmountCalculatorUserInput()
-	packageCalculator()
+	// profitCalculator()
+	// investAmountCalculatorAdvanced()
+	profitCalculatorAdvanced()
 }

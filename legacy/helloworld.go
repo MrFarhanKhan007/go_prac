@@ -39,7 +39,7 @@ func main()  {
 		location1 string
 	)
 
-	name1 = "Farhan1"
+	name1 = "Farhan"
 	age1 = 30
 	isEmployed1 = true
 	location1 = "Los Angeles"

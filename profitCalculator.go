@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func packageCalculator() {
+func profitCalculator() {
 	// revenue, expenses and tax rate(in decimal)
 
 	var revenue, expenses, taxRate float64
@@ -33,5 +33,4 @@ func packageCalculator() {
 	//Ratio
 	ratio := EBT / EAT
 	fmt.Println("Ratio: ",ratio)
-
 }
