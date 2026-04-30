@@ -1,33 +1,14 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"os"
-	"strconv"
+	"github.com/MrFarhanKhan007/go_prac/fileops"
 )
 
 const balanceFile = "FileHandlingFiles\\balance.txt"
 
-func readFromFile() (fileData float64, err error) {
-	fileDataInBytes, err := os.ReadFile(balanceFile)
-	if err != nil {
-		return 0, errors.New("Failed to open the file!")
-	}
-	fileDataInString := string(fileDataInBytes)
-	fileData, err = strconv.ParseFloat(fileDataInString, 64)
-	if err != nil {
-		return 0, errors.New("Failed to parse the value!")
-	}
-	return fileData, nil
-}
-func writeToFile(accountBalance float64) {
-	balanceText := fmt.Sprint(accountBalance)
-	os.WriteFile(balanceFile, []byte(balanceText), 0644)
-}
-
 func bankApplication() {
-	accountBalance, err := readFromFile()
+	accountBalance, err := fileops.ReadFloatFromFile(balanceFile)
 	if err != nil {
 		fmt.Println("Error occurred! - Error: ", err)
 	}
@@ -91,7 +72,7 @@ func depositMoney(accountBalance *float64) {
 	fmt.Scan(&moneyToBeDeposited)
 	*accountBalance += moneyToBeDeposited
 	fmt.Printf("Balance Updated! - New Account Balance is: %.2f\n", *accountBalance)
-	writeToFile(*accountBalance)
+	fileops.WriteFloatToFile(balanceFile, *accountBalance)
 }
 
 func withdrawMoney(accountBalance *float64) {
@@ -117,6 +98,6 @@ func withdrawMoneyWithRetries(accountBalance *float64, retries int) {
 	} else {
 		*accountBalance -= moneyToWithdraw
 		fmt.Printf("Balance Updated! - New Account Balance is: %.2f\n", *accountBalance)
-		writeToFile(*accountBalance)
+		fileops.WriteFloatToFile(balanceFile, *accountBalance)
 	}
 }
