@@ -6,6 +6,6 @@ func main(){
 	// investAmountCalculatorUserInput()
 	// profitCalculator()
 	// investAmountCalculatorAdvanced()
-	// profitCalculatorAdvanced()
-	bankApplication()
+	profitCalculatorAdvanced()
+	// bankApplication()
 }

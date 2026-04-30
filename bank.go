@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-const balanceFile = "balance.txt"
+const balanceFile = "FileHandlingFiles\\balance.txt"
 
 func readFromFile() (fileData float64, err error) {
 	fileDataInBytes, err := os.ReadFile(balanceFile)
