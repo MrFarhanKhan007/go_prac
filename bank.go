@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -8,11 +9,17 @@ import (
 
 const balanceFile = "balance.txt"
 
-func readFromFile() (fileData float64) {
-	fileDataInBytes, _ := os.ReadFile(balanceFile)
+func readFromFile() (fileData float64, err error) {
+	fileDataInBytes, err := os.ReadFile(balanceFile)
+	if err != nil {
+		return 0, errors.New("Failed to open the file!")
+	}
 	fileDataInString := string(fileDataInBytes)
-	fileData, _ = strconv.ParseFloat(fileDataInString, 64)
-	return fileData
+	fileData, err = strconv.ParseFloat(fileDataInString, 64)
+	if err != nil {
+		return 0, errors.New("Failed to parse the value!")
+	}
+	return fileData, nil
 }
 func writeToFile(accountBalance float64) {
 	balanceText := fmt.Sprint(accountBalance)
@@ -20,8 +27,10 @@ func writeToFile(accountBalance float64) {
 }
 
 func bankApplication() {
-	accountBalance := readFromFile()
-
+	accountBalance, err := readFromFile()
+	if err != nil {
+		fmt.Println("Error occurred! - Error: ", err)
+	}
 	for {
 		mainMenu()
 		validChoice := false
