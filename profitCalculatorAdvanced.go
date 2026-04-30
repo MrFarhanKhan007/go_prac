@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"strconv"
 )
 
 const EBTFile = "FileHandlingFiles\\EBTFile.txt"
@@ -12,25 +11,25 @@ const taxAmountFile = "FileHandlingFiles\\taxAmountFile.txt"
 const EATFile = "FileHandlingFiles\\EATFile.txt"
 const RatioFile = "FileHandlingFiles\\RatioFile.txt"
 
-func readFromFileProfit(fileName string) (amount float64, err error) {
+func readFromFileProfit(fileName string) (amount string, err error) {
 	amountInBytes, err := os.ReadFile(fileName)
 	if err != nil {
-		errorMsg := fmt.Sprintf("Something went wrong in reading the file - '%v' !", fileName)
-		return 0, errors.New(errorMsg)
+		errorMsg := fmt.Sprintf("Something went wrong in reading the file - '%v' !\n", fileName)
+		return "", errors.New(errorMsg)
 	}
 
 	amountInString := string(amountInBytes)
 
-	amount, err = strconv.ParseFloat(amountInString, 64)
-	if err != nil {
-		return 0, errors.New("Something went wrong in parsing the value!")
-	}
-	return amount, nil
+	// amount, err = strconv.ParseFloat(amountInString, 64)
+	// if err != nil {
+	// 	return 0, errors.New("Something went wrong in parsing the value!\n")
+	// }
+	return amountInString, nil
 }
 
-func writeToFileProfit(fileName string, data float64) {
-	dataInBytes := fmt.Sprint(data)
-	os.WriteFile(fileName, []byte(dataInBytes), 0644)
+func writeToFileProfit(text string, fileName string, data float64) {
+	dataInString := fmt.Sprint(text, ": ", data)
+	os.WriteFile(fileName, []byte(dataInString), 0644)
 }
 
 func profitCalculatorAdvanced() {
@@ -64,10 +63,10 @@ func profitCalculatorAdvanced() {
 		fmt.Println(err)
 	}
 
-	printFormattedTextProfit("Earnings before tax", EBT)
-	printFormattedTextProfit("Tax Amount", taxAmount)
-	printFormattedTextProfit("Earnings after tax", EAT)
-	printFormattedTextProfit("Ratio", Ratio)
+	printFormattedTextProfit(EBT)
+	printFormattedTextProfit(taxAmount)
+	printFormattedTextProfit(EAT)
+	printFormattedTextProfit(Ratio)
 }
 
 func printTextProfit(text string) {
@@ -96,23 +95,23 @@ func getUserInputProfitWithRetries(text string, retries int) (userInput float64)
 	return userInput
 }
 
-func printFormattedTextProfit(text string, number float64) {
-	fmt.Printf(text+": "+"%.2f\n", number)
+func printFormattedTextProfit(text string) {
+	fmt.Println(text)
 }
 
 func calcValuesAndWriteToFile(revenue, expenses, taxRate float64) {
 	//Earnings before tax
 	EBT := revenue - expenses
-	writeToFileProfit(EBTFile, EBT)
+	writeToFileProfit("Earnings before tax", EBTFile, EBT)
 
 	//Earnings after tax (profit)
 	taxAmount := EBT * taxRate
-	writeToFileProfit(taxAmountFile, taxAmount)
+	writeToFileProfit("Tax Amount", taxAmountFile, taxAmount)
 
 	EAT := EBT - taxAmount
-	writeToFileProfit(EATFile, EAT)
+	writeToFileProfit("Earnings after tax", EATFile, EAT)
 
 	//Ratio
 	Ratio := EBT / EAT
-	writeToFileProfit(RatioFile, Ratio)
+	writeToFileProfit("Ratio", RatioFile, Ratio)
 }
