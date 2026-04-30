@@ -28,7 +28,7 @@ func readFromFileProfit(fileName string) (amount string, err error) {
 }
 
 func writeToFileProfit(text string, fileName string, data float64) {
-	dataInString := fmt.Sprint(text, ": ", data)
+	dataInString := fmt.Sprintf("%v: %.2f", text, data)
 	os.WriteFile(fileName, []byte(dataInString), 0644)
 }
 
