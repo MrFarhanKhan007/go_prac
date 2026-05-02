@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/MrFarhanKhan007/go_prac/fileops"
+	"github.com/Pallinder/go-randomdata"
 )
 
 const balanceFile = "FileHandlingFiles\\balance.txt"
@@ -47,6 +48,7 @@ func mainMenu() {
 	fmt.Println("=============================")
 	fmt.Println("==============")
 	fmt.Println("Welcome to Go Bank!")
+	fmt.Printf("You can reach us 24/7 at %v\n\n", randomdata.PhoneNumber())
 	fmt.Println("Where do you want to go?")
 	fmt.Println("1. Check Balance")
 	fmt.Println("2. Deposit money")
