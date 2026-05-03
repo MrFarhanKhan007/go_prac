@@ -1,6 +1,7 @@
 package Advanced
 
 import (
+	"errors"
 	"fmt"
 	"time"
 )
@@ -17,17 +18,25 @@ func StructPrac() {
 	UserlastName := getUserData("Please enter your last name: ")
 	Userbirthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
 
-	var appUser user = user{
-		firstName: UserfirstName,
-		lastName:  UserlastName,
-		birthDate: Userbirthdate,
-		createdAt: time.Now(),
+	appUser, err := newUser(UserfirstName, UserlastName, Userbirthdate, time.Now())
+
+	if err != nil {
+		fmt.Println("ERROR!")
+		fmt.Println(err)
 	}
-	printUserData(&appUser)
+	appUser.printUserData()
+	appUser.clearUserData()
+	appUser.printUserData()
 }
 
-func printUserData(u *user) {
-	fmt.Printf("First Name: %v\nLast Name: %v\nBirthDate: %v\nCreated at: %v", u.firstName, u.lastName, u.birthDate, u.createdAt)
+func (u *user) printUserData() {
+	fmt.Printf("First Name: %v\nLast Name: %v\nBirthDate: %v\nCreated at: %v\n", u.firstName, u.lastName, u.birthDate, u.createdAt)
+}
+
+func (u *user) clearUserData() {
+	u.firstName = "N/A"
+	u.lastName = "N/A"
+	u.birthDate = "N/A"
 }
 
 func getUserData(promptText string) string {
@@ -35,4 +44,16 @@ func getUserData(promptText string) string {
 	var value string
 	fmt.Scan(&value)
 	return value
+}
+
+func newUser(firstName string, lastName string, birthDate string, createdAt time.Time) (*user, error) {
+	if firstName == "" || lastName == "" || birthDate == "" {
+		return nil, errors.New("Invalid Data!, Enter Valid Data please.")
+	}
+	return &user{
+		firstName: firstName,
+		lastName:  lastName,
+		birthDate: birthDate,
+		createdAt: createdAt,
+	}, nil
 }
