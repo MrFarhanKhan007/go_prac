@@ -11,12 +11,18 @@ func StructPrac() {
 	UserlastName := getUserData("Please enter your last name: ")
 	Userbirthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
 
-	appUser, err := user.New(UserfirstName, UserlastName, Userbirthdate, time.Now())
+	appUser, err := user.NewUser(UserfirstName, UserlastName, Userbirthdate, time.Now())
 
 	if err != nil {
 		fmt.Println("ERROR!")
 		fmt.Println(err)
 	}
+
+	adminUser, err := user.NewAdmin("daddy@gmail.com", "UniversalDad")
+	adminUser.PrintUserData()
+	adminUser.ClearUserData()
+	adminUser.PrintUserData()
+	fmt.Println("--------------------------")
 	appUser.PrintUserData()
 	appUser.ClearUserData()
 	appUser.PrintUserData()
