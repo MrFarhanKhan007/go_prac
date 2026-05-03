@@ -2,7 +2,7 @@ package Basics
 
 import (
 	"fmt"
-	"github.com/MrFarhanKhan007/go_prac/fileops"
+	"github.com/MrFarhanKhan007/go_prac/Basics/fileops"
 	"github.com/Pallinder/go-randomdata"
 )
 
