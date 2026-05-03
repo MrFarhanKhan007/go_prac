@@ -1,11 +1,11 @@
-package main
+package Basics
 
 import (
 	"fmt"
 	"math"
 )
 
-func investAmountCalculator() {
+func InvestAmountCalculator() {
 	// var investAmount float64 = 1000
 	// var expectedReturnRate = 5.5
 	// var years = 10

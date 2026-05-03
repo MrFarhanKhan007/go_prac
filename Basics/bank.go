@@ -1,4 +1,4 @@
-package main
+package Basics
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 
 const balanceFile = "FileHandlingFiles\\balance.txt"
 
-func bankApplication() {
+func BankApplication() {
 	accountBalance, err := fileops.ReadFloatFromFile(balanceFile)
 	if err != nil {
 		fmt.Println("Error occurred! - Error: ", err)

@@ -1,4 +1,4 @@
-package main
+package Basics
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 
 const inflationRate = 2.5
 
-func investAmountCalculatorAdvanced() {
+func InvestAmountCalculatorAdvanced() {
 	var investAmount, expectedReturnRate, years float64
 
 	printTextInvestment("Enter investment amount: ")

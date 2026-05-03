@@ -1,4 +1,4 @@
-package main
+package Basics
 
 import (
 	"errors"
@@ -32,7 +32,7 @@ func writeToFileProfit(text string, fileName string, data float64) {
 	os.WriteFile(fileName, []byte(dataInString), 0644)
 }
 
-func profitCalculatorAdvanced() {
+func ProfitCalculatorAdvanced() {
 	// Revenue, Expenses and TaxRate
 	revenue := getUserInputProfit("Enter Revenue: ")
 	expenses := getUserInputProfit("Enter Expenses: ")

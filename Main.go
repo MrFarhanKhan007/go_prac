@@ -1,11 +1,16 @@
 package main
 
-func main(){
-	// fmt.Println("First Program")
-	// investAmountCalculator()
-	// investAmountCalculatorUserInput()
-	// profitCalculator()
-	// investAmountCalculatorAdvanced()
-	// profitCalculatorAdvanced()
-	bankApplication()
+import (
+	"github.com/MrFarhanKhan007/go_prac/Advanced"
+	"github.com/MrFarhanKhan007/go_prac/Basics"
+)
+
+func main() {
+	Basics.InvestAmountCalculator()
+	Basics.InvestAmountCalculatorUserInput()
+	Basics.ProfitCalculator()
+	Basics.InvestAmountCalculatorAdvanced()
+	Basics.ProfitCalculatorAdvanced()
+	Basics.BankApplication()
+	Advanced.AdultYears()
 }

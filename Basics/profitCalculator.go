@@ -1,8 +1,8 @@
-package main
+package Basics
 
 import "fmt"
 
-func profitCalculator() {
+func ProfitCalculator() {
 	// revenue, expenses and tax rate(in decimal)
 
 	var revenue, expenses, taxRate float64

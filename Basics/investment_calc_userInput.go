@@ -1,11 +1,11 @@
-package main
+package Basics
 
 import (
 	"fmt"
 	"math"
 )
 
-func investAmountCalculatorUserInput() {
+func InvestAmountCalculatorUserInput() {
 	const inflationRate = 2.5
 	var investAmount, years float64
 	expectedReturnRate := 5.5
