@@ -18,10 +18,16 @@ func NoteApp() {
 	userNote, err := noteData.New(title, content)
 
 	if err != nil {
-		fmt.Printf("ERROR!\n%v", err)
+		fmt.Printf("Creating the note failed!\n%v", err)
 		return
 	}
 	userNote.Display()
+	err = userNote.Save()
+	if err!=nil {
+		fmt.Printf("\nSaving the note Failed!\n%v", err)
+		return
+	}
+	fmt.Println("\nSaving the note succeeded!")
 }
 
 func getNoteData() (title string, content string) {
@@ -38,8 +44,8 @@ func getUserValue(text string) (value string) {
 	value, err := reader.ReadString('\n')
 
 	if err!=nil {
-		fmt.Println("ERROR!")
-		fmt.Println(err)
+		fmt.Printf("Error while reading input!\n%v", err)
+		return
 	}
 
 	value = strings.TrimSuffix(value,"\n")
