@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/MrFarhanKhan007/go_prac/Advanced"
+	// "github.com/MrFarhanKhan007/go_prac/Advanced"
 	// "github.com/MrFarhanKhan007/go_prac/Basics"
+	"github.com/MrFarhanKhan007/go_prac/noteApp"
 )
 
 func main() {
@@ -13,5 +14,6 @@ func main() {
 	// Basics.ProfitCalculatorAdvanced()
 	// Basics.BankApplication()
 	// Advanced.AdultYears()
-	Advanced.StructPrac()
+	// Advanced.StructPrac()
+	noteApp.NoteApp()
 }
